@@ -8,7 +8,9 @@
         "php": ">=5.6.4",
         "laravel/lumen-framework": "5.5.*",
         "vlucas/phpdotenv": "~2.2",
-        "hhxsv5/laravel-s": "~3.3"
+        "hhxsv5/laravel-s": "~3.3",
+        "dusterio/lumen-passport": "^0.2.0",
+        "illuminate/redis": "5.5.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
