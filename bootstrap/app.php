@@ -26,9 +26,9 @@ $app = new Laravel\Lumen\Application(
     realpath(__DIR__.'/../')
 );
 
-// $app->withFacades();
+ $app->withFacades();
 
-// $app->withEloquent();
+ $app->withEloquent();
 
 /*
 |--------------------------------------------------------------------------
@@ -62,6 +62,17 @@ $app->singleton(
 |
 */
 
+$app->configure('auth');
+
+$app->routeMiddleware([
+    'auth' => App\Http\Middleware\Authenticate::class,
+]);
+$app->register(Laravel\Passport\PassportServiceProvider::class);         //新增
+
+$app->register(Dusterio\LumenPassport\PassportServiceProvider::class);   //新增
+
+$app->alias('cache', 'Illuminate\Cache\CacheManager'); //新增，解决Lumen的Cache问题
+
 $app->register(IdeHelperServiceProvider::class);
 
 $app->register(LaravelSServiceProvider::class);
@@ -86,7 +97,7 @@ $app->register(LaravelSServiceProvider::class);
 */
 
 // $app->register(App\Providers\AppServiceProvider::class);
-// $app->register(App\Providers\AuthServiceProvider::class);
+ $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 
 /*
@@ -104,6 +115,9 @@ $app->router->group([
     'namespace' => 'App\Http\Controllers',
 ], function ($router) {
     require __DIR__.'/../routes/web.php';
+    require __DIR__.'/../routes/api.php';
+    require __DIR__.'/../routes/admin.php';
+    require __DIR__.'/../routes/wechat.php';
 });
 
 return $app;
