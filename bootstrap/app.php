@@ -1,6 +1,7 @@
 <?php
 
 use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
+use Flipbox\LumenGenerator\LumenGeneratorServiceProvider;
 use Hhxsv5\LaravelS\Illuminate\LaravelSServiceProvider;
 use Illuminate\Redis\RedisServiceProvider;
 
@@ -103,7 +104,7 @@ $app->register(RedisServiceProvider::class);
 // $app->register(App\Providers\AppServiceProvider::class);
  $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
-
+$app->register(LumenGeneratorServiceProvider::class);
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes

@@ -13,7 +13,7 @@ use Hhxsv5\LaravelS\Swoole\WebSocketHandlerInterface;
 
 class WebSocketService implements WebSocketHandlerInterface
 {
-// 声明没有参数的构造函数
+    // 声明没有参数的构造函数
     public function __construct()
     {
     }
@@ -29,7 +29,7 @@ class WebSocketService implements WebSocketHandlerInterface
     public function onMessage(\swoole_websocket_server $server, \swoole_websocket_frame $frame)
     {
         \Log::info('Received message', [$frame->fd, $frame->data, $frame->opcode, $frame->finish]);
-        $server->push($frame->fd, date('Y-m-d H:i:s'));
+        $server->push($frame->fd, $frame->data);
         // throw new \Exception('an exception');// 此时抛出的异常上层会忽略，并记录到Swoole日志，需要开发者try/catch捕获处理
     }
 

@@ -8,6 +8,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::group(['namespace' => 'api', 'prefix' => 'api'],function (){
-
+Route::group(['prefix' => 'api/v1'], function () {
+    Route::get('/', function () {
+        return app('app')->version();
+    });
 });
