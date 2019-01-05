@@ -2,6 +2,7 @@
 
 use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
 use Hhxsv5\LaravelS\Illuminate\LaravelSServiceProvider;
+use Illuminate\Redis\RedisServiceProvider;
 
 require_once __DIR__.'/../vendor/autoload.php';
 
@@ -64,6 +65,8 @@ $app->singleton(
 
 $app->configure('auth');
 
+$app->configure('database');
+
 $app->routeMiddleware([
     'auth' => App\Http\Middleware\Authenticate::class,
 ]);
@@ -77,6 +80,7 @@ $app->register(IdeHelperServiceProvider::class);
 
 $app->register(LaravelSServiceProvider::class);
 
+$app->register(RedisServiceProvider::class);
 // $app->middleware([
 //    App\Http\Middleware\ExampleMiddleware::class
 // ]);
